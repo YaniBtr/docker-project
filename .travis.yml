@@ -1,3 +1,5 @@
+language: generic 
+
 #We need superuser permissions to install docker
 sudo: required
 services: 
@@ -10,5 +12,5 @@ before_install:
 
 
 #Contains all the commands that are executed to run our test suite 
-script :
-  - docker run docki npm run test -- --coverage 
+script : 
+  - docker run -e CI=true docki npm run test
