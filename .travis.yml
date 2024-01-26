@@ -1,0 +1,14 @@
+#We need superuser permissions to install docker
+sudo: required
+services: 
+  - docker # Installing docker
+
+#commands that are executed before our tests are executed
+#in this section, we have commands that must be executed before we deploy our projects or run our tests
+before_install:
+  - docker build -t docki -f Dockerfile.dev . #Building our image before we run tests
+
+
+#Contains all the commands that are executed to run our test suite 
+script :
+  - docker run docki npm run test -- --coverage 
